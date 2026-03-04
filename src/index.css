@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #f8fafc;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 2px; }
+
+/* Question palette states */
+.q-not-visited  { @apply bg-gray-100 text-gray-600 border border-gray-300; }
+.q-answered     { @apply bg-green-500 text-white; }
+.q-not-answered { @apply bg-red-500 text-white; }
+.q-marked       { @apply bg-purple-500 text-white; }
+.q-marked-ans   { background: linear-gradient(135deg, #9333ea 60%, #22c55e 100%); color:white; }
+
+/* Option styles */
+.option-btn {
+  @apply w-full flex items-start gap-3 p-3 rounded-xl border-2 border-gray-200
+         text-left cursor-pointer transition-all duration-150
+         hover:border-blue-300 hover:bg-blue-50 active:scale-[0.99];
+}
+.option-btn.selected  { @apply border-blue-500 bg-blue-50; }
+.option-btn.correct   { @apply border-green-500 bg-green-50; }
+.option-btn.wrong     { @apply border-red-500 bg-red-50; }
+
+/* Cards */
+.stat-card { @apply bg-white rounded-2xl p-4 shadow-sm border border-gray-100; }
+.glass-card { @apply bg-white/80 backdrop-blur rounded-2xl p-4 shadow border border-white/60; }
+
+/* Tab scroll */
+.tabs-scroll {
+  @apply flex gap-1 overflow-x-auto pb-1;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.tabs-scroll::-webkit-scrollbar { display: none; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.3s ease forwards; }
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Subject color chips */
+.chip-maths   { @apply bg-purple-100 text-purple-700 text-xs font-semibold px-2 py-0.5 rounded-full; }
+.chip-physics { @apply bg-blue-100   text-blue-700   text-xs font-semibold px-2 py-0.5 rounded-full; }
+.chip-chem    { @apply bg-green-100  text-green-700  text-xs font-semibold px-2 py-0.5 rounded-full; }
+
+/* Timer warning */
+.timer-warn  { @apply text-orange-500; }
+.timer-alert { @apply text-red-600 font-bold animate-pulse; }
+
+/* Chat bubble */
+.chat-mine  { @apply bg-blue-600 text-white rounded-2xl rounded-br-sm px-3 py-2 max-w-[75%]; }
+.chat-other { @apply bg-white border border-gray-200 rounded-2xl rounded-bl-sm px-3 py-2 max-w-[75%]; }
+
+/* Full-height CBT */
+.cbt-root { min-height: 100dvh; display: flex; flex-direction: column; }
